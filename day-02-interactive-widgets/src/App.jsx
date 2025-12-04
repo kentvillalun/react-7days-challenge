@@ -11,12 +11,12 @@ function App() {
   };
 
   const minus = () => {
-    count != 0 && setCount(count - 1)
-  }
+    count != 0 && setCount(count - 1);
+  };
 
   const reset = () => {
-    setCount(0)
-  }
+    setCount(0);
+  };
 
   return (
     <>
@@ -28,10 +28,16 @@ function App() {
           <div className="flex flex-col gap-3 justify-between">
             <p className="text-center font-semibold text-4xl"> {count} </p>
             <div className="flex gap-4 justify-between text-xl font-semibold text-white">
-              <button className="bg-red-400 py-1 px-5 rounded hover:bg-red-700 transition-colors active:bg-red-900 cursor-pointer " onClick={ minus }>
+              <button
+                className="bg-red-400 py-1 px-5 rounded hover:bg-red-700 transition-colors active:bg-red-900 cursor-pointer "
+                onClick={minus}
+              >
                 -
               </button>
-              <button className="bg-blue-400 py-1 px-5 rounded uppercase hover:bg-blue-700 cursor-pointer active:bg-blue-900 transition-colors" onClick={ reset }>
+              <button
+                className="bg-blue-400 py-1 px-5 rounded uppercase hover:bg-blue-700 cursor-pointer active:bg-blue-900 transition-colors"
+                onClick={reset}
+              >
                 Reset
               </button>
               <button
