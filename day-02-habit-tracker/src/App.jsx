@@ -2,24 +2,28 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [inputHabit, setInputHabit] = useState("");      // current input text
-  const [habits, setHabits] = useState([]);              // array of objects
+  // Codes for creating usign useState
 
-  const handleInputHabit = (event) => {
-    setInputHabit(event.target.value);
+  const [habitList, setHabitList] = useState([]); // Creating a state for the list of habits
+  const [newHabit, setNewHabit] = useState(""); // A state for the input or the habit that is going to be inserted in the list of habit
+
+  const handleChange = (event) => { // react handling the input 
+    setNewHabit(event.target.value);
   };
 
   const addHabit = () => {
-    const trimmed = inputHabit.trim();
-    if (!trimmed) return;
-
-    const newHabitObj = {
-      id: crypto.randomUUID(),
-      name: trimmed,
+    const habit = {
+      id: habitList.length === 0 ? 1 : habitList[habitList.length - 1].id + 1,
+      habitName: newHabit,
     };
 
-    setHabits((prev) => [...prev, newHabitObj]); // push into array (immutably)
-    setInputHabit(""); // clear input
+    setHabitList([...habitList, habit]);
+  };
+
+  // Deleting
+
+  const deleteHabit = (id) => {
+    setHabitList(habitList.filter((h) => h.id !== id));
   };
 
   return (
@@ -33,9 +37,7 @@ function App() {
           <input
             type="text"
             className="border rounded-lg p-2"
-            value={inputHabit}
-            onChange={handleInputHabit}
-              
+            onChange={handleChange}
           />
 
           <button
@@ -47,10 +49,20 @@ function App() {
 
           <div className="flex flex-col">
             <p>Habits:</p>
-            <ul className="list-disc pl-5">
-              {habits.map((h) => (
-                <li key={h.id}>{h.name}</li>
-              ))}
+            <ul className="pl-5 flex flex-col gap-2">
+              {habitList.map((habit) => {
+                return (
+                  <li className="flex justify-between" key={habit.id}>
+                    <p>{habit.habitName}</p>
+                    <button
+                      className="bg-red-100 px-4 py-1 cursor-pointer rounded-md hover:bg-red-600 active:bg-red-900 transition-colors hover:text-white font-semibold"
+                      onClick={() => deleteHabit(habit.id)}
+                    >
+                      X
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
