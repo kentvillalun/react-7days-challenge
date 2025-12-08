@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import { Habit } from './Habit';
 
 function App() {
   // Codes for creating usign useState
@@ -15,6 +16,7 @@ function App() {
     const habit = {
       id: habitList.length === 0 ? 1 : habitList[habitList.length - 1].id + 1,
       habitName: newHabit,
+      fixed: false,
     };
 
     setHabitList([...habitList, habit]);
@@ -25,6 +27,19 @@ function App() {
   const deleteHabit = (id) => {
     setHabitList(habitList.filter((h) => h.id !== id));
   };
+
+  const toggleFixed = (id) => {
+    const habitFixed = habitList.map((h) => {
+      if (h.id === id) {
+        return { ...h, fixed: true }
+      } else {
+        return h;
+      }
+    })
+
+    setHabitList(habitFixed)
+  } 
+
 
   return (
     <div className="flex justify-center items-center h-screen bg-blue-100 font-mono">
@@ -51,17 +66,7 @@ function App() {
             <p>Habits:</p>
             <ul className="pl-5 flex flex-col gap-2">
               {habitList.map((habit) => {
-                return (
-                  <li className="flex justify-between" key={habit.id}>
-                    <p>{habit.habitName}</p>
-                    <button
-                      className="bg-red-100 px-4 py-1 cursor-pointer rounded-md hover:bg-red-600 active:bg-red-900 transition-colors hover:text-white font-semibold"
-                      onClick={() => deleteHabit(habit.id)}
-                    >
-                      X
-                    </button>
-                  </li>
-                );
+                return <Habit habitName={habit.habitName} id={habit.id} deleteHabit={deleteHabit} fixed={habit.fixed} toggleFixed={toggleFixed} />;
               })}
             </ul>
           </div>
