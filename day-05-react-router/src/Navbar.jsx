@@ -5,7 +5,7 @@ const Navbar = () => {
           <h1 className="font-bold text-3xl">NAVBAR</h1>
           <div className="align-bottom flex gap-5 justify-center items-center font-semibold">
             <Link to="/">Home</Link>
-            <Link to="/menu">Menu</Link>
+            <Link to="/profile">Profile</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </div>
