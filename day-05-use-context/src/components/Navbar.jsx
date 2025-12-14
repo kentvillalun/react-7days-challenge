@@ -5,7 +5,7 @@ import { AppContext } from "../App";
 export const Navbar = () => {
     const { name, newName } = useContext(AppContext);
     return (
-        <div className="flex flex-row py-3 px-20 from-blue-100 justify-between font-mono items-center bg-gradient-to-b shadow-lg sticky top-0">
+        <div className="flex flex-row py-3 px-20 from-blue-100 justify-between font-mono items-center bg-linear-to-b shadow-lg sticky top-0">
             <h1 className="text-3xl font-semibold uppercase ">Auth Practice</h1>
             <div className="text-xl flex flex-row justify-between gap-10">
                 <Link to="/" className=" hover:text-blue-600 py-1 px-5 rounded-lg transition-colors">Home</Link>
