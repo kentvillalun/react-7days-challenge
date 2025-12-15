@@ -1,6 +1,6 @@
-const Profile = (props) => {
+const Profile = () => {
     return (
-        <h1>This is the profile page and the user is: {props.username}</h1>
+        <h1>This is the profile page</h1>
     );
 }
  
