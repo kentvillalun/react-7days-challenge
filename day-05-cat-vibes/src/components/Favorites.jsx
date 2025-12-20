@@ -1,7 +1,19 @@
-const Favorites = () => {
+const Favorites = ({ favorites }) => {
     return (
-        <div className="bg-red-200 md:order-1">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque inventore iusto ipsam aspernatur tenetur maxime ad, est dolore quod! Quaerat provident maiores, atque molestiae cupiditate corporis nesciunt rem repellendus aut.
+        <div className="md:order-1">
+          <h2 className="font-mono text-lg">Favorites</h2>
+
+      {favorites.length === 0 ? (
+        <p>No favorites yet.</p>
+      ) : (
+        <ul className="flex flex-col gap-2">
+          {favorites.map((item) => (
+            <li key={item.id} className="p-3 rounded-lg bg-gray-100 rounded">
+              {item.fact}
+            </li>
+          ))}
+        </ul>
+      )}
         </div>
     );
 }
